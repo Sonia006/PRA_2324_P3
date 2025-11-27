@@ -102,8 +102,8 @@ V HashTable<V>::search(std::string key){
 	int k = h(key);
 	for (int i = 0; i < table[k].size(); i++){
         	TableEntry<V> entry = table[k].get(i);
-		if (entry.key = key)
-			return entry->value;
+		if (entry.key == key)
+			return entry.value;
 	}
 	throw std::runtime_error("Clave no encontrada");
 }
@@ -114,9 +114,10 @@ V HashTable<V>::remove(std::string key){
 	for (int i = 0; i < table[k].size(); i++){
 		TableEntry<V> entry = table[k].get(i);
 		if(entry.key == key){
+			V eliminado = entry.value;
 			table[k].remove(i);
 			n--;
-			return;
+			return eliminado;
 		}
 	}
 	throw std::runtime_error("Clave no encontrada");
@@ -126,7 +127,7 @@ template <typename V>
 int HashTable<V>::entries(){
 	int count = 0;
         for(int i = 0; i < max; i++){
-               	count+=table(i).size();
+               	count+=table[i].size();
         }
         return count;
 }
