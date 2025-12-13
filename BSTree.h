@@ -107,6 +107,7 @@ void BSTree<T>::print_inorder(std::ostream &out, BSNode<T>* n) const{
 template <typename T>
 void BSTree<T>::remove(T e){
 	root = remove(root, e);
+	nelem--;
 }
 
 template <typename T>
